@@ -1,0 +1,15 @@
+<!-- jogo.xml -->
+<jogo>
+    <cena id="1">
+        <descricao>Você está na cidade de Londres, em 1848.</descricao>
+        
+        <descricao atraso-antes="500">Enquanto você caminha pela rua da cidade, uma pessoa desconhecida aparece de surpresa...</descricao> 
+          <descricao atraso-antes="200">- Senhor, poderia me dar um pedaço de pão?</descricao>
+        <descricao atraso-antes="100">Diz a pessoa desconhecida</descricao>
+
+        <descricao antes-antes="500" tom="lento">...</descricao>
+
+        <descricao atraso-antes="2000" tom="rapido">O que voce deseja falar para essa pessoa?</descricao>
+    </cena>
+</jogo>
+
