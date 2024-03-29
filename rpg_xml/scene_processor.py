@@ -1,10 +1,10 @@
-from .util import narrar_historia
+from .util import type_message
 
 # Atributos existentes para o elemento descricao
-description_attr = [
-    "atraso-antes",
-    "quebrar-linha",
-    "tom",
+msg_attr = [
+    "delay-before",
+    "wrap-line",
+    "type-vel",
 ]
 
 
@@ -19,23 +19,25 @@ class SceneProcessor:
 
     def _proc_description(self):
         # Percorre todas as descricoes que estao dentro de uma cena
-        for description in self.scene.findall("descricao"):
+        for msg in self.scene.findall("msg"):
             # Coleta todos os atributos encontrados na tag
-            attrs_found = self._get_attr(description, description_attr)
+            attrs_found = self._get_attr(msg, msg_attr)
 
-            narrar_historia(
-                description.text,
-                atraso_antes=(
-                    int(attrs_found["atraso-antes"])
-                    if "atraso-antes" in attrs_found
+            type_message(
+                msg.text,
+                delay_before=(
+                    int(attrs_found["delay-before"])
+                    if "delay-before" in attrs_found
                     else 0
                 ),
-                quebrar_linha=(
-                    bool(attrs_found["quebrar-linha"])
-                    if "quebrar-linha" in attrs_found
+                wrap_line=(
+                    bool(attrs_found["wrap-line"])
+                    if "wrap-line" in attrs_found
                     else True
                 ),
-                tom=attrs_found["tom"] if "tom" in attrs_found else "normal",
+                type_vel=(
+                    int(attrs_found["type-vel"]) if "type-vel" in attrs_found else 50
+                ),
             )
 
     def _proc_option(self):

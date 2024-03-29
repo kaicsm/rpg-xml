@@ -1,4 +1,4 @@
 from .engine import Engine
-from .util import narrar_historia, limpar_terminal
+from .util import type_message, clear_terminal
 from .xmlparser import XmlParser
 from .scene_processor import SceneProcessor
