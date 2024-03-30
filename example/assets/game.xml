@@ -1,15 +1,13 @@
-<!-- jogo.xml -->
-<jogo>
-    <cena id="1">
-        <descricao>Você está na cidade de Londres, em 1848.</descricao>
+<game>
+    <scene id="1">
+        <msg>Você está na cidade de Londres, em 1848.</msg>
         
-        <descricao atraso-antes="500">Enquanto você caminha pela rua da cidade, uma pessoa desconhecida aparece de surpresa...</descricao> 
-          <descricao atraso-antes="200">- Senhor, poderia me dar um pedaço de pão?</descricao>
-        <descricao atraso-antes="100">Diz a pessoa desconhecida</descricao>
+        <msg delay-before="500">Enquanto você caminha pela rua da cidade, uma pessoa desconhecida aparece de surpresa...</msg> 
+          <msg delay-before="200">- Senhor, poderia me dar um pedaço de pão?</msg>
+        <msg delay-before="100">Diz a pessoa desconhecida</msg>
 
-        <descricao antes-antes="500" tom="lento">...</descricao>
+        <msg delay-before="500" type-vel="200">...</msg>
 
-        <descricao atraso-antes="2000" tom="rapido">O que voce deseja falar para essa pessoa?</descricao>
-    </cena>
-</jogo>
-
+        <msg delay-before="2000" type-vel="10">O que voce deseja falar para essa pessoa?</msg>
+    </scene>
+</game>
