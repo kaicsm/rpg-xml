@@ -22,11 +22,12 @@
     <msg>Quais são as possíveis soluções para essa problemática?</msg>
     <option>
       <query go-to="2">Ler o pergaminho do conhecimento</query>
-      <query go-to="green">Ignorar o pergaminho do conhecimento</query>
+      <query go-to="3">Ignorar o pergaminho do conhecimento</query>
     </option>
   </scene>
 
   <scene id="2">
+    <music play="./ner.ogg"></music>
     <msg color="green" wrap-line="false">-Bem:</msg>
     <msg>Você escolheu ler o pergaminho do conhecimento.</msg>
     <msg>Este pergaminho contém informações vitais para a revolução. Estude-o com cuidado.</msg>
@@ -51,6 +52,8 @@
   </scene>
 
   <scene id="4">
+    <music play="./mus.mp3"></music>
+
     <msg>Você chega à reunião da resistência e encontra outros companheiros de luta.</msg>
     <msg>Discute-se planos para enfrentar os capitalistas e libertar o povo da opressão.</msg>
     <msg color="green">-Líder da resistência:</msg>

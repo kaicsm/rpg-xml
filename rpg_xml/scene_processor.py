@@ -1,32 +1,25 @@
-from .music_player import MusicPlayer
+from .music_controller import MusicController
 
-msg_attr = ["delay-before", "wrap-line", "type-vel", "color"]
+msg_attr = ["type-vel", "delay-before", "wrap-line", "color"]
 
 
 class SceneProcessor:
     def __init__(self, ui, parser) -> None:
         self.ui = ui
         self.parser = parser
+        self.music_controller = MusicController()
 
     def process(self, scene):
         self._proc_messages(scene)
         return self._proc_option(scene)
 
     def _proc_messages(self, scene):
-        music_playing = False
-        music_player = None
-
         for item in scene:
             if item.tag == "music":
                 if item.get("play"):
-                    if music_player:
-                        music_player.stop()  # Para a música atual se estiver tocando
-                    music_player = MusicPlayer(item.get("play"))
-                    music_player.play()
-                    music_playing = True
-                elif item.get("stop") and music_playing:
-                    music_player.stop()
-                    music_playing = False
+                    self.music_controller.play_music(item.get("play"))
+                elif item.get("stop"):
+                    self.music_controller.stop_music()
             elif item.tag == "msg":
                 attrs_found = self._get_attr(item, msg_attr)
                 wrap_line = attrs_found.get("wrap-line", "True").lower() == "true"
