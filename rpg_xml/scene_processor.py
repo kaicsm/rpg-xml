@@ -1,8 +1,4 @@
-msg_attr = [
-    "delay-before",
-    "wrap-line",
-    "type-vel",
-]
+msg_attr = ["delay-before", "wrap-line", "type-vel", "color"]
 
 
 class SceneProcessor:
@@ -23,6 +19,7 @@ class SceneProcessor:
                 delay_before=int(attrs_found.get("delay-before", 100)),
                 wrap_line=wrap_line,
                 type_vel=int(attrs_found.get("type-vel", 50)),
+                color=attrs_found.get("color", "default"),
             )
 
     def _proc_option(self, scene):

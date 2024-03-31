@@ -12,6 +12,7 @@ class Engine:
         self.current_scene_index = 0
 
     def start_game(self):
+        self.ui.clear_screen()
         self.process_scene(self.current_scene_index)
         self.ui.run_forever()
 
@@ -24,9 +25,9 @@ class Engine:
                 self.current_scene_index = next_scene_index
                 self.process_scene(self.current_scene_index)
             else:
-                self.ui.type_message("Cena não encontrada", color=4)
+                self.ui.type_message("Cena não encontrada", color="red")
         else:
-            self.ui.type_message("Fim do jogo", color=2)
+            self.ui.type_message("Fim do jogo", color="red")
             self.ui.close()
 
     def get_scene_index_by_id(self, scene_id):

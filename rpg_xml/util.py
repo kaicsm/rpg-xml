@@ -1,59 +1,77 @@
-import curses
+import time
+import sys
+import os
 
 
 class TerminalUI:
+    COLORS = {
+        "default": "\033[0m",
+        "black": "\033[30m",
+        "red": "\033[31m",
+        "green": "\033[32m",
+        "yellow": "\033[33m",
+        "blue": "\033[34m",
+        "magenta": "\033[35m",
+        "cyan": "\033[36m",
+        "white": "\033[37m",
+    }
+
     def __init__(self):
-        self.stdscr = curses.initscr()
-        curses.start_color()
-        curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLACK)
-        curses.init_pair(2, curses.COLOR_CYAN, curses.COLOR_BLACK)
-        curses.init_pair(3, curses.COLOR_GREEN, curses.COLOR_BLACK)
-        curses.init_pair(4, curses.COLOR_RED, curses.COLOR_BLACK)
-        curses.init_pair(5, curses.COLOR_BLUE, curses.COLOR_BLACK)
-        curses.init_pair(6, curses.COLOR_YELLOW, curses.COLOR_BLACK)
+        self.running = True
+
+    def clear_screen(self):
+        os.system("cls" if os.name == "nt" else "clear")
 
     def type_message(
-        self, message, type_vel=30, delay_before=0, color=1, wrap_line=True
+        self, message, type_vel=30, delay_before=0, color="default", wrap_line=True
     ):
         if delay_before > 0:
-            curses.napms(delay_before)
+            time.sleep(delay_before / 1000)
 
+        # Escreve a mensagem caractere por caractere com um atraso
         for char in message:
-            self.stdscr.addch(char, curses.color_pair(color))
-            self.stdscr.refresh()
-            curses.napms(type_vel)
+            color_code = self.COLORS.get(color.lower(), self.COLORS["default"])
+            print(f"{color_code}{char}", end="", flush=True)
+            time.sleep(type_vel / 1000)
 
         if wrap_line:
-            self.stdscr.addch("\n")
+            print(f"{self.COLORS['default']}")  # Retorna ao estilo de texto padrão
 
     def render_menu(self, menu_items):
         while True:
             for i, item in enumerate(menu_items):
-                self.type_message(f"{i+1}. ", wrap_line=False, color=3, type_vel=5)
-                self.type_message(item, color=1)
+                self.type_message(f"{i+1}. ", color="green", wrap_line=False)
+                self.type_message(f"{item}")
 
-            self.type_message(
-                "Escolha um número: ", wrap_line=False, color=2, type_vel=5
-            )
+            self.type_message("Escolha um número: ", color="cyan", wrap_line=False)
 
             try:
-                user_choice = int(self.stdscr.getstr().decode())
+                user_choice = int(input())
                 if 1 <= user_choice <= len(menu_items):
                     return menu_items[user_choice - 1]
                 else:
-                    self.type_message("Opção inválida. Tente novamente.", color=4)
+                    print("Opção inválida. Tente novamente.")
             except ValueError:
-                self.type_message("Entrada inválida. Digite um número válido.", color=4)
-            except curses.error:
-                pass
+                print("Entrada inválida. Digite um número válido.")
 
     def run_forever(self):
-        while True:
+        while self.running:
             try:
-                self.stdscr.refresh()
+                # Atualização contínua da tela
+                time.sleep(1)
             except KeyboardInterrupt:
                 self.close()
-                break
 
     def close(self):
-        curses.endwin()
+        self.running = False
+        sys.exit()  # Sai do programa
+
+
+# Exemplo de uso
+if __name__ == "__main__":
+    ui = TerminalUI()
+    ui.type_message("Hello world!", color="green")
+    lost = ["Kaic", "Salomao"]
+    selected = ui.render_menu(lost)
+    ui.type_message(selected, color="blue")
+    ui.run_forever()
