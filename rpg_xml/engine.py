@@ -1,4 +1,4 @@
-from .util import clear_terminal
+from .util import TerminalUI
 from .xmlparser import XmlParser
 from .scene_processor import SceneProcessor
 
@@ -6,13 +6,31 @@ from .scene_processor import SceneProcessor
 class Engine:
     def __init__(self, path) -> None:
         self.parser = XmlParser(path)
-        self.scene_processor = SceneProcessor()
+        self.ui = TerminalUI()
+        self.scene_processor = SceneProcessor(self.ui, self.parser)
         self.scenes = self.parser.get_nodes("scene")
+        self.current_scene_index = 0
 
     def start_game(self):
-        clear_terminal()
-        for scene in self.scenes:
-            self._process_scene(scene)
+        self.process_scene(self.current_scene_index)
+        self.ui.run_forever()
 
-    def _process_scene(self, scene):
-        self.scene_processor.process(scene)
+    def process_scene(self, scene_index):
+        scene = self.scenes[scene_index]
+        next_scene_id = self.scene_processor.process(scene)
+        if next_scene_id is not None:
+            next_scene_index = self.get_scene_index_by_id(next_scene_id)
+            if next_scene_index is not None:
+                self.current_scene_index = next_scene_index
+                self.process_scene(self.current_scene_index)
+            else:
+                self.ui.type_message("Cena não encontrada", color=4)
+        else:
+            self.ui.type_message("Fim do jogo", color=2)
+            self.ui.close()
+
+    def get_scene_index_by_id(self, scene_id):
+        for i, scene in enumerate(self.scenes):
+            if scene.get("id") == scene_id:
+                return i
+        return None

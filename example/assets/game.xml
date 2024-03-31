@@ -1,13 +1,21 @@
 <game>
-    <scene id="1">
-        <msg>Você está na cidade de Londres, em 1848.</msg>
-        
-        <msg delay-before="500">Enquanto você caminha pela rua da cidade, uma pessoa desconhecida aparece de surpresa...</msg> 
-          <msg delay-before="200">- Senhor, poderia me dar um pedaço de pão?</msg>
-        <msg delay-before="100">Diz a pessoa desconhecida</msg>
+  <scene id="1">
+    <option>
+      <query go-to="2">Sim</query>
+      <query go-to="3">Nao</query>
+    </option>
+    <msg>-BEM: Olá,Marx,me chamo bem.</msg>
+    <msg delay-before="700" wrap-line="false">-BEM: Bem vindo ao mundo [nome do mundo], nesse mundo enfrentamos uma grande calamidade em nossa sociedade, os capitalistas, eles são os detentores do poder e dos  meios de produção, trazem com  isso um desequilíbrio  jamais visto</msg>
+    <msg delay-before="700" type-vel="300">....</msg>
+    <msg delay-before="500">
 
-        <msg delay-before="500" type-vel="200">...</msg>
-
-        <msg delay-before="2000" type-vel="10">O que voce deseja falar para essa pessoa?</msg>
-    </scene>
+-BEM: Nessa cidade nós, o proletáriado, não temos acesso aos recursos educacionais...poderia nos ajudar na questão aqui existente?</msg>
+    <msg delay-before="200">Aqui está,um pergaminho do conhecimento [um de nós irá levar  o pergaminho sobre a divisão de classes], quais são as possíveis soluções para essa problemática?</msg>
+  </scene>
+  <scene id="2">
+    <msg>Parabens! Você passou!</msg>
+  </scene>
+  <scene id="3">
+    <msg>Você não passou...</msg>
+  </scene>
 </game>

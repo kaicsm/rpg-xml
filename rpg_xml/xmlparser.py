@@ -21,6 +21,13 @@ class XmlParser:
     def get_nodes(self, node):
         return self.root.findall(node)
 
+    def get_node_by_id(self, id):
+        """Retorna a cena pelo id"""
+        for node in self.root.iter():
+            if node.get("id") == id:
+                return node
+        return None
+
     def get_attribute(self, element, attribute):
         return element.get(attribute)
 
