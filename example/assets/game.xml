@@ -1,5 +1,6 @@
 <game>
   <scene id="1">
+    <music play="./mus.mp3"></music>
     <msg color="green" wrap-line="false">-Bem:</msg>
     <msg>Olá, Marx, meu nome é Bem.</msg>
 

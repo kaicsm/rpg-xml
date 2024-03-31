@@ -1,3 +1,5 @@
+from .music_player import MusicPlayer
+
 msg_attr = ["delay-before", "wrap-line", "type-vel", "color"]
 
 
@@ -11,16 +13,30 @@ class SceneProcessor:
         return self._proc_option(scene)
 
     def _proc_messages(self, scene):
-        for msg in scene.findall("msg"):
-            attrs_found = self._get_attr(msg, msg_attr)
-            wrap_line = attrs_found.get("wrap-line", "True").lower() == "true"
-            self.ui.type_message(
-                msg.text,
-                delay_before=int(attrs_found.get("delay-before", 100)),
-                wrap_line=wrap_line,
-                type_vel=int(attrs_found.get("type-vel", 50)),
-                color=attrs_found.get("color", "default"),
-            )
+        music_playing = False
+        music_player = None
+
+        for item in scene:
+            if item.tag == "music":
+                if item.get("play"):
+                    if music_player:
+                        music_player.stop()  # Para a música atual se estiver tocando
+                    music_player = MusicPlayer(item.get("play"))
+                    music_player.play()
+                    music_playing = True
+                elif item.get("stop") and music_playing:
+                    music_player.stop()
+                    music_playing = False
+            elif item.tag == "msg":
+                attrs_found = self._get_attr(item, msg_attr)
+                wrap_line = attrs_found.get("wrap-line", "True").lower() == "true"
+                self.ui.type_message(
+                    item.text,
+                    delay_before=int(attrs_found.get("delay-before", 100)),
+                    wrap_line=wrap_line,
+                    type_vel=int(attrs_found.get("type-vel", 50)),
+                    color=attrs_found.get("color", "default"),
+                )
 
     def _proc_option(self, scene):
         option = scene.find("option")
