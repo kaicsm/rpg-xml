@@ -3,7 +3,7 @@ from .music_controller import MusicController
 msg_attr = ["type-vel", "delay-before", "wrap-line", "color"]
 
 
-class SceneProcessor:
+class SceneController:
     def __init__(self, ui, parser) -> None:
         self.ui = ui
         self.parser = parser

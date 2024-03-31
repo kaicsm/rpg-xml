@@ -1,13 +1,13 @@
 from .util import TerminalUI
 from .xmlparser import XmlParser
-from .scene_processor import SceneProcessor
+from .scene_controller import SceneController
 
 
 class Engine:
     def __init__(self, path) -> None:
         self.parser = XmlParser(path)
         self.ui = TerminalUI()
-        self.scene_processor = SceneProcessor(self.ui, self.parser)
+        self.scene_processor = SceneController(self.ui, self.parser)
         self.scenes = self.parser.get_nodes("scene")
         self.current_scene_index = 0
 
