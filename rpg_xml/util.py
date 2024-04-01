@@ -43,7 +43,8 @@ class TerminalUI:
                 self.type_message(f"{i+1}. ", color="green", wrap_line=False)
                 self.type_message(f"{item}")
 
-            self.type_message("Escolha um número: ", color="cyan", wrap_line=False)
+            self.type_message("Escolha um número:", color="cyan", wrap_line=False)
+            self.type_message(" ", wrap_line=False)
 
             try:
                 user_choice = int(input())

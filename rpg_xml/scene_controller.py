@@ -13,6 +13,9 @@ class SceneController:
         self._proc_messages(scene)
         return self._proc_option(scene)
 
+    def stop_music(self):
+        self.music_controller.stop_music()
+
     def _proc_messages(self, scene):
         for item in scene:
             if item.tag == "music":
@@ -20,6 +23,7 @@ class SceneController:
                     self.music_controller.play_music(item.get("play"))
                 elif item.get("stop"):
                     self.music_controller.stop_music()
+
             elif item.tag == "msg":
                 attrs_found = self._get_attr(item, msg_attr)
                 wrap_line = attrs_found.get("wrap-line", "True").lower() == "true"
@@ -30,6 +34,9 @@ class SceneController:
                     type_vel=int(attrs_found.get("type-vel", 50)),
                     color=attrs_found.get("color", "default"),
                 )
+
+            elif item.tag == "clear":
+                self.ui.clear_screen()
 
     def _proc_option(self, scene):
         option = scene.find("option")
