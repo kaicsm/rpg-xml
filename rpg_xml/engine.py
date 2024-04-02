@@ -26,8 +26,7 @@ class Engine:
             else:
                 self.ui.type_message("Cena não encontrada", color="red")
         else:
-            self.scene_controller.stop_music()
-            self.ui.close()
+            self.ui.run_forever(self.scene_controller)
 
     def get_scene_index_by_id(self, scene_id):
         for i, scene in enumerate(self.scenes):

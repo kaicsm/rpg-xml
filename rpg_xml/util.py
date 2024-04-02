@@ -40,10 +40,14 @@ class TerminalUI:
     def render_menu(self, menu_items):
         while True:
             for i, item in enumerate(menu_items):
-                self.type_message(f"{i+1}. ", color="green", wrap_line=False)
-                self.type_message(f"{item}")
+                self.type_message(
+                    f"{i+1}. ", color="green", wrap_line=False, type_vel=5
+                )
+                self.type_message(f"{item}", type_vel=5)
 
-            self.type_message("Escolha um número:", color="cyan", wrap_line=False)
+            self.type_message(
+                "Escolha um número:", color="cyan", wrap_line=False, type_vel=5
+            )
             self.type_message(" ", wrap_line=False)
 
             try:
@@ -51,16 +55,23 @@ class TerminalUI:
                 if 1 <= user_choice <= len(menu_items):
                     return menu_items[user_choice - 1]
                 else:
-                    print("Opção inválida. Tente novamente.")
+                    self.type_message(
+                        "Opção inválida. Tente novamente.", color="red", type_vel=5
+                    )
             except ValueError:
-                print("Entrada inválida. Digite um número válido.")
+                self.type_message(
+                    "Entrada inválida. Digite um número válido.",
+                    color="red",
+                    type_vel=5,
+                )
 
-    def run_forever(self):
+    def run_forever(self, scene):
         while self.running:
             try:
                 # Atualização contínua da tela
                 time.sleep(1)
             except KeyboardInterrupt:
+                scene.stop_music()
                 self.close()
 
     def close(self):
@@ -75,4 +86,3 @@ if __name__ == "__main__":
     lost = ["Kaic", "Salomao"]
     selected = ui.render_menu(lost)
     ui.type_message(selected, color="blue")
-    ui.run_forever()
