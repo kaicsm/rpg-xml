@@ -9,7 +9,7 @@ class MusicPlayer:
     def play(self):
         if not self.process:
             self.process = subprocess.Popen(
-                ["mpv", "--loop=inf", self.file_path],
+                ["mpv", "--loop=inf", "--no-video", self.file_path],
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
             )
