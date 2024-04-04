@@ -1,2 +1,2 @@
 # rpg_xml
-Ferramenta para criar rpg de texto usando XML e python
+Uma biblioteca python que interpreta código XML para um RPG de texto
