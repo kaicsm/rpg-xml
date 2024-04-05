@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="rpg_xml",
+    name="rpg-xml",
     version="0.1.2",
     description="Crie rpg de texto usando xml!",
     author="Kaic Salomão",
