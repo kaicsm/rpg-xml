@@ -1,9 +1,7 @@
 # rpg-xml
 Uma biblioteca python que interpreta código XML para um RPG de texto no terminal.
 
-<video controls>
-  <source src="raw/rpg-xml.mp4" type="video/mp4">
-</video>
+![](raw/rpg-xml.mp4)
 
 Inicialmente, criei essa biblioteca como base para fazer um trabalho de sociologia: [marx-legacy](https://github.com/kaicsalomao/marx-legacy)
 
