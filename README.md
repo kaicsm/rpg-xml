@@ -1,11 +1,11 @@
 # rpg-xml
 Uma biblioteca python que interpreta código XML para um RPG de texto no terminal.
 
-
-
-https://github.com/kaicsalomao/rpg-xml/assets/68879185/074b1d70-4f8e-41c5-965a-b0c30907e0c3
-
-
+<details>
+  <summary>📺 Vídeo de demonstração</summary>
+  
+  https://github.com/kaicsalomao/rpg-xml/assets/68879185/074b1d70-4f8e-41c5-965a-b0c30907e0c3
+</details>
 
 Inicialmente, criei essa biblioteca como base para fazer um trabalho de sociologia: [marx-legacy](https://github.com/kaicsalomao/marx-legacy)
 
