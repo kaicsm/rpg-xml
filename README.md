@@ -4,7 +4,11 @@ Uma biblioteca python que interpreta código XML para um RPG de texto no termina
 <details>
   <summary>📺 Vídeo de demonstração</summary>
   
-  https://github.com/kaicsalomao/rpg-xml/assets/68879185/074b1d70-4f8e-41c5-965a-b0c30907e0c3
+  
+
+  https://github.com/kaicsalomao/rpg-xml/assets/68879185/05944858-694d-4875-8382-ae294ad814a4
+
+
 </details>
 
 Inicialmente, criei essa biblioteca como base para fazer um trabalho de sociologia: [marx-legacy](https://github.com/kaicsalomao/marx-legacy)
