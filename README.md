@@ -1,7 +1,12 @@
 # rpg-xml
 Uma biblioteca python que interpreta código XML para um RPG de texto no terminal.
 
+<video controls>
+  <source src="raw/rpg-xml.mp4" type="video/mp4">
+</video>
+
 Inicialmente, criei essa biblioteca como base para fazer um trabalho de sociologia: [marx-legacy](https://github.com/kaicsalomao/marx-legacy)
+
 
 ### Funções suportadas
 - Colorizar o texto
@@ -9,11 +14,21 @@ Inicialmente, criei essa biblioteca como base para fazer um trabalho de sociolog
 - Aplicar uma pausa antes do texto ser impresso
 - Músicas
 
-### Dependencias
+### Dependências
 Para reproduzir música é necessário ter o [MPV](https://mpv.io/) instalado no sistema.
 
+### Como começar
+1. Use `pip install rpg-xml` para instalar a biblioteca
+2. Crie um arquivo python de nome de sua preferência e inicie a `Engine` passando como argumento o local do seu arquivo .xml:
+```python
+from rpg_xml import Engine
 
-### O modelo do seu código XML deve cumprir as seguintes regras
+if __name__ == "__main__":
+  eng = Engine("./src/game.xml")
+  eng.start_game()
+```
+
+### O modelo do seu arquivo XML deve cumprir as seguintes regras
 1. Iniciar com a tag `<game>...</game>`.
 2. Você deve organizar todo o seu jogo em cenas (scenes) que se conectam umas com as outras.
 3. Cada cena deve ter um id númerico definido pelo atributo `id`
