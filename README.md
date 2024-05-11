@@ -1,31 +1,28 @@
 # rpg-xml
-Uma biblioteca python que interpreta código XML para um RPG de texto no terminal.
+A Python library that interprets XML code for a text-based RPG in the terminal.
 
 <details>
-  <summary>📺 Vídeo de demonstração</summary>
+  <summary>📺 Demonstration Video</summary>
   
-  
-
   https://github.com/kaicsalomao/rpg-xml/assets/68879185/05944858-694d-4875-8382-ae294ad814a4
-
-
+  
 </details>
 
-Inicialmente, criei essa biblioteca como base para fazer um trabalho de sociologia: [marx-legacy](https://github.com/kaicsalomao/marx-legacy)
+Initially, I created this library as a basis for a sociology project: [marx-legacy](https://github.com/kaicsalomao/marx-legacy)
 
 
-### Funções suportadas
-- Colorizar o texto
-- Controlar a velocidade de digitação 
-- Aplicar uma pausa antes do texto ser impresso
-- Músicas
+### Supported Functions
+- Text colorization
+- Typing speed control
+- Applying a pause before text is printed
+- Music
 
-### Dependências
-Para reproduzir música é necessário ter o [MPV](https://mpv.io/) instalado no sistema.
+### Dependencies
+To play music, [MPV](https://mpv.io/) needs to be installed on the system.
 
-### Como começar
-1. Use `pip install rpg-xml` para instalar a biblioteca
-2. Crie um arquivo python de nome de sua preferência e inicie a `Engine` passando como argumento o local do seu arquivo .xml:
+### Getting Started
+1. Use `pip install rpg-xml` to install the library
+2. Create a Python file with a name of your choice and initiate the Engine, passing the location of your .xml file as an argument:
 ```python
 from rpg_xml import Engine
 
@@ -34,12 +31,12 @@ if __name__ == "__main__":
   eng.start_game()
 ```
 
-### O modelo do seu arquivo XML deve cumprir as seguintes regras
-1. Iniciar com a tag `<game>...</game>`.
-2. Você deve organizar todo o seu jogo em cenas (scenes) que se conectam umas com as outras.
-3. Cada cena deve ter um id númerico definido pelo atributo `id`
+### Your XML file model must comply with the following rules
+1. Start with the tag `<game>...</game>`.
+2. Organize your entire game into scenes that connect with each other.
+3. Each scene must have a numeric id defined by the `id` attribute
 
-##### exemplo de código:
+##### Code example:
 ```xml
 <game>
   <scene id="1">
@@ -51,50 +48,49 @@ if __name__ == "__main__":
 </game>
 ```
 
-### Tags disponíveis 
-| TAG | FUNÇÃO | ATRIBUTOS |
+### Available Tags
+| TAG | FUNCTION | ATTRIBUTES |
 | --- | --- | --- |
-| `<msg>` | Imprime texto no terminal | `color`, `delay-before`, `type-vel`, `wrap-line` |
-| `<clear/>` | Limpa o terminal (equivalente ao comando `clear` do linux) | - |
-| `<option>` | Caixa de enquete. Deve conter outra tag chamada `<query>` | - |
-| `<query>`| Define uma opção para uma enquete | `go-to` |
-| `<music/>` | Reproduzir uma música | `play`, `stop` |
+| `<msg>` | Print text in the terminal | `color`, `delay-before`, `type-vel`, `wrap-line` |
+| `<clear/>` | Clear the terminal (equivalent to the `clear` command in Linux) | - |
+| `<option>` | Poll box. Must contain another tag called `<query>` | - |
+| `<query>`| Define an option for a poll | `go-to` |
+| `<music/>` | Play music | `play`, `stop` |
 
-### Especificação dos atributos
-#### Atributos da tag `<msg>`
-- color: Define a cor do texto a ser impresso. As cores disponíveis atualmente são: `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`, `black`.
+### Specification of Attributes
+#### Attributes of the `<msg>` tag
+- color: Defines the color of the text to be printed. Currently available colors are: `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`, `black`.
 
-- delay-before: Define o tempo de pausa em milissegundos antes do texto ser impresso.
+- delay-before: Defines the pause time in milliseconds before the text is printed.
 
-- type-vel: Define a velocidade de digitação do texto em milissegundos. 
+- type-vel: Defines the typing speed of the text in milliseconds. 
 
-- wrap-line: Define se o texto deve ou não quebrar linha. Pode ser "true" ou "false".
+- wrap-line: Defines whether the text should wrap or not. Can be "true" or "false".
 
-#### Atributos da tag `<query>`
-- go-to: Define o ID da cena para a qual o jogo deve avançar quando essa opção for selecionada.
+#### Attributes of the `<query>` tag
+- go-to: Defines the ID of the scene to which the game should advance when this option is selected.
 
-#### Atributos da tag `<music>`
+#### Attributes of the `<music>` tag
+- play: Specifies the path to the music file to be played.
 
-- play: Especifica o caminho para o arquivo de música a ser reproduzido.
+- stop: Defines that the currently playing music should be stopped. It does not take any value.
 
-- stop: Define que a música que está em reprodução deve ser interrompida. Não recebe nenhum valor.
-
-### Exemplo de uso das tags
+### Example of Tag Usage
 ```xml
 <game>
   <scene id="1">
-    <msg color="green" delay-before="500">Olá, mundo!</msg>
+    <msg color="green" delay-before="500">Hello world!</msg>
     <option>
-      <query go-to="2">Continuar</query>
+      <query go-to="2">Continue</query>
     </option>
   </scene>
   
   <scene id="2">
-    <music play="./assets/musica.mp3"/>
-    <msg delay-before="1000">Aqui está uma mensagem com uma pausa antes de ser exibida.</msg>
+    <music play="./assets/music.mp3"/>
+    <msg delay-before="1000">A simple message with delay.</msg>
   </scene>
 </game>
 ```
 
-### Contribuições
-Para quem quiser contribuir pesso que sempre mantenha as boas práticas de programação.
+### Contributions
+For those who want to contribute, I ask that you always maintain good programming practices.
