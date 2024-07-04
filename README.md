@@ -1,9 +1,6 @@
 # rpg-xml
 A Python library that interprets XML code for a text-based RPG in the terminal.
 
-Initially, I created this library as a basis for a sociology project: [marx-legacy](https://github.com/kaicsalomao/marx-legacy)
-
-
 ### Supported Functions
 - Text colorization
 - Typing speed control
