@@ -81,6 +81,3 @@ if __name__ == "__main__":
   </scene>
 </game>
 ```
-
-### Contributions
-For those who want to contribute, I ask that you always maintain good programming practices.
