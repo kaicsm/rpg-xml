@@ -1,5 +1,5 @@
 # rpg-xml
-A Python library that interprets XML code for a terminal-based RPG
+A Python library that interprets XML for a terminal-based RPG
 
 ### Supported Functions
 - Text colorization
